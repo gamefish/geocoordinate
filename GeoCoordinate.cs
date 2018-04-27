@@ -210,7 +210,13 @@ namespace GeoCoordinatePortable
         /// <returns>
         ///     true if the GeoCoordinate does not contain latitude or longitude data; otherwise, false.
         /// </returns>
-        public bool IsUnknown => Equals(Unknown);
+        public bool IsUnknown
+        {
+            get
+            {
+                return Equals(Unknown);
+            }
+        }
 
         /// <summary>
         ///     Gets the altitude of the GeoCoordinate, in meters.
@@ -334,8 +340,8 @@ namespace GeoCoordinatePortable
                 return "Unknown";
             }
 
-            return
-                $"{Latitude.ToString("G", CultureInfo.InvariantCulture)}, {Longitude.ToString("G", CultureInfo.InvariantCulture)}";
+            return string.Format("{{0},{1}}",Latitude.ToString("G", CultureInfo.InvariantCulture),Longitude.ToString("G", CultureInfo.InvariantCulture));
+                // $"{Latitude.ToString("G", CultureInfo.InvariantCulture)}, {Longitude.ToString("G", CultureInfo.InvariantCulture)}";
         }
     }
 }
